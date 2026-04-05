@@ -59,7 +59,7 @@ public class LoginFrame extends JFrame {
             String clave = new String(txtContrasena.getPassword());
             if (usuario.equals("admin") && clave.equals("1234")) {
                 setVisible(false);
-                new MenuFrame(series, peliculas).setVisible(true);
+                new MenuFrame(this, series, peliculas).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Datos incorrectos");
             }

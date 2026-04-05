@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,9 +21,10 @@ public class SeriesFrame extends JFrame {
     /**
      * Crea la ventana de series.
      *
+     * @param menuFrame ventana de menu
      * @param series lista de series
      */
-    public SeriesFrame(List<Serie> series) {
+    public SeriesFrame(MenuFrame menuFrame, List<Serie> series) {
         setTitle("Series");
         setSize(700, 420);
         setLocationRelativeTo(null);
@@ -50,6 +52,13 @@ public class SeriesFrame extends JFrame {
         JPanel panelImagen = new JPanel(new BorderLayout());
         panelImagen.add(imagen, BorderLayout.CENTER);
         add(panelImagen, BorderLayout.EAST);
+
+        JButton btnVolver = new BotonPersonalizado("Volver al menu");
+        btnVolver.addActionListener(e -> {
+            dispose();
+            menuFrame.setVisible(true);
+        });
+        add(btnVolver, BorderLayout.SOUTH);
     }
 
     private void ponerImagen(JLabel label, String ruta) {

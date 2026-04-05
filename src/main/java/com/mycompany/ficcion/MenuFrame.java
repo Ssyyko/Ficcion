@@ -10,33 +10,44 @@ import javax.swing.JFrame;
  */
 public class MenuFrame extends JFrame {
 
+    private final LoginFrame loginFrame;
+
     /**
      * Crea el menu principal.
      *
+     * @param loginFrame ventana de login
      * @param series lista de series
      * @param peliculas lista de peliculas
      */
-    public MenuFrame(List<Serie> series, List<Pelicula> peliculas) {
+    public MenuFrame(LoginFrame loginFrame, List<Serie> series, List<Pelicula> peliculas) {
+        this.loginFrame = loginFrame;
         setTitle("Menu principal");
-        setSize(320, 180);
+        setSize(320, 230);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(2, 1, 10, 10));
+        setLayout(new GridLayout(3, 1, 10, 10));
 
         BotonPersonalizado btnSeries = new BotonPersonalizado("Series");
         BotonPersonalizado btnPeliculas = new BotonPersonalizado("Peliculas");
+        BotonPersonalizado btnVolver = new BotonPersonalizado("Volver al login");
 
         add(btnSeries);
         add(btnPeliculas);
+        add(btnVolver);
 
         btnSeries.addActionListener(e -> {
-            dispose();
-            new SeriesFrame(series).setVisible(true);
+            setVisible(false);
+            new SeriesFrame(this, series).setVisible(true);
         });
 
         btnPeliculas.addActionListener(e -> {
+            setVisible(false);
+            new PeliculasFrame(this, peliculas).setVisible(true);
+        });
+
+        btnVolver.addActionListener(e -> {
             dispose();
-            new PeliculasFrame(peliculas).setVisible(true);
+            loginFrame.setVisible(true);
         });
     }
 }

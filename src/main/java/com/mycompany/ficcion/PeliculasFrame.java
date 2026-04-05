@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,9 +21,10 @@ public class PeliculasFrame extends JFrame {
     /**
      * Crea la ventana de peliculas.
      *
+     * @param menuFrame ventana de menu
      * @param peliculas lista de peliculas
      */
-    public PeliculasFrame(List<Pelicula> peliculas) {
+    public PeliculasFrame(MenuFrame menuFrame, List<Pelicula> peliculas) {
         setTitle("Peliculas");
         setSize(700, 420);
         setLocationRelativeTo(null);
@@ -49,6 +51,13 @@ public class PeliculasFrame extends JFrame {
         JPanel panelImagen = new JPanel(new BorderLayout());
         panelImagen.add(imagen, BorderLayout.CENTER);
         add(panelImagen, BorderLayout.EAST);
+
+        JButton btnVolver = new BotonPersonalizado("Volver al menu");
+        btnVolver.addActionListener(e -> {
+            dispose();
+            menuFrame.setVisible(true);
+        });
+        add(btnVolver, BorderLayout.SOUTH);
     }
 
     private void ponerImagen(JLabel label, String ruta) {
