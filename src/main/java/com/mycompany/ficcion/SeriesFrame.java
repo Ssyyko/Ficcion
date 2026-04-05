@@ -1,9 +1,7 @@
 package com.mycompany.ficcion;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,9 +39,8 @@ public class SeriesFrame extends JFrame {
             if (serie != null) {
                 info.setText("Nombre: " + serie.getNombre()
                         + "\nTemporadas: " + serie.getNumeroTemporadas()
-                        + "\nDuracion total: " + serie.sumarDuracionTotal() + " minutos"
-                        + "\nImagen: " + serie.getRutaImagen());
-                ponerImagen(imagen, serie.getRutaImagen());
+                        + "\nDuracion total: " + serie.sumarDuracionTotal() + " minutos");
+                ImageLoader.ponerImagen(imagen, serie.getRutaImagen());
             }
         });
 
@@ -61,9 +58,4 @@ public class SeriesFrame extends JFrame {
         add(btnVolver, BorderLayout.SOUTH);
     }
 
-    private void ponerImagen(JLabel label, String ruta) {
-        ImageIcon icono = new ImageIcon(ruta);
-        Image escalada = icono.getImage().getScaledInstance(220, 140, Image.SCALE_SMOOTH);
-        label.setIcon(new ImageIcon(escalada));
-    }
 }

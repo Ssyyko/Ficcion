@@ -1,9 +1,7 @@
 package com.mycompany.ficcion;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,9 +38,8 @@ public class PeliculasFrame extends JFrame {
             Pelicula pelicula = lista.getSelectedValue();
             if (pelicula != null) {
                 info.setText("Nombre: " + pelicula.getNombre()
-                        + "\nDuracion: " + pelicula.getDuracion() + " minutos"
-                        + "\nImagen: " + pelicula.getRutaImagen());
-                ponerImagen(imagen, pelicula.getRutaImagen());
+                        + "\nDuracion: " + pelicula.getDuracion() + " minutos");
+                ImageLoader.ponerImagen(imagen, pelicula.getRutaImagen());
             }
         });
 
@@ -60,9 +57,4 @@ public class PeliculasFrame extends JFrame {
         add(btnVolver, BorderLayout.SOUTH);
     }
 
-    private void ponerImagen(JLabel label, String ruta) {
-        ImageIcon icono = new ImageIcon(ruta);
-        Image escalada = icono.getImage().getScaledInstance(220, 140, Image.SCALE_SMOOTH);
-        label.setIcon(new ImageIcon(escalada));
-    }
 }

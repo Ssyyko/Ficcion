@@ -68,4 +68,9 @@ public class Serie extends Titulo implements MostrableId {
     public String getRutaImagen() {
         return rutaImagen;
     }
+
+    @Override
+    public String toString() {
+        return getNombre();
+    }
 }

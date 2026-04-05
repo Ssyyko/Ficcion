@@ -1,6 +1,5 @@
 package com.mycompany.ficcion;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -33,10 +32,10 @@ public class FiccionApp {
      * Crea objetos iniciales para la aplicacion.
      */
     public static void crearObjetosIniciales() {
-        String imgBreaking = ImageFactory.createImage(java.nio.file.Path.of("imagenes"), "breaking.png", "Breaking", new Color(52, 152, 219));
-        String imgDark = ImageFactory.createImage(java.nio.file.Path.of("imagenes"), "dark.png", "Dark", new Color(142, 68, 173));
-        String imgOrigen = ImageFactory.createImage(java.nio.file.Path.of("imagenes"), "origen.png", "Origen", new Color(39, 174, 96));
-        String imgInterstellar = ImageFactory.createImage(java.nio.file.Path.of("imagenes"), "interstellar.png", "Interstellar", new Color(231, 76, 60));
+        String imgBreaking = "https://commons.wikimedia.org/wiki/Special:Redirect/file/PaleyFest%202010%20-%20Breaking%20Bad.jpg";
+        String imgDark = "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dark%20Forest.png";
+        String imgOrigen = "https://commons.wikimedia.org/wiki/Special:Redirect/file/Manhattan%20Skyline%20night.jpg";
+        String imgInterstellar = "https://commons.wikimedia.org/wiki/Special:Redirect/file/Orion%20Nebula%20%283866%29.png";
 
         series.add(new Serie("S1", "Breaking Bad", 5, new int[]{7, 13, 13, 13, 16}, new int[]{58, 48, 47, 46, 49}, imgBreaking));
         series.add(new Serie("S2", "Dark", 3, new int[]{10, 8, 8}, new int[]{52, 55, 60}, imgDark));
