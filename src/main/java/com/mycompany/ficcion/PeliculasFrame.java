@@ -1,0 +1,59 @@
+package com.mycompany.ficcion;
+
+import java.awt.BorderLayout;
+import java.awt.Image;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+/**
+ * <span style="display:none">No mostrar en el resumen.</span>
+ * Ventana para ver peliculas.
+ */
+public class PeliculasFrame extends JFrame {
+
+    /**
+     * Crea la ventana de peliculas.
+     *
+     * @param peliculas lista de peliculas
+     */
+    public PeliculasFrame(List<Pelicula> peliculas) {
+        setTitle("Peliculas");
+        setSize(700, 420);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(10, 10));
+
+        JList<Pelicula> lista = new JList<>(peliculas.toArray(new Pelicula[0]));
+        JTextArea info = new JTextArea();
+        info.setEditable(false);
+        JLabel imagen = new JLabel();
+
+        lista.addListSelectionListener(e -> {
+            Pelicula pelicula = lista.getSelectedValue();
+            if (pelicula != null) {
+                info.setText("Nombre: " + pelicula.getNombre()
+                        + "\nDuracion: " + pelicula.getDuracion() + " minutos"
+                        + "\nImagen: " + pelicula.getRutaImagen());
+                ponerImagen(imagen, pelicula.getRutaImagen());
+            }
+        });
+
+        add(new JScrollPane(lista), BorderLayout.WEST);
+        add(new JScrollPane(info), BorderLayout.CENTER);
+        JPanel panelImagen = new JPanel(new BorderLayout());
+        panelImagen.add(imagen, BorderLayout.CENTER);
+        add(panelImagen, BorderLayout.EAST);
+    }
+
+    private void ponerImagen(JLabel label, String ruta) {
+        ImageIcon icono = new ImageIcon(ruta);
+        Image escalada = icono.getImage().getScaledInstance(220, 140, Image.SCALE_SMOOTH);
+        label.setIcon(new ImageIcon(escalada));
+    }
+}
